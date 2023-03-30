@@ -33,7 +33,21 @@ while (totalEmpHrs <= MAX_Hours && totalWorkingDays < NUM_OF_WORKING_DAYS) {
   let empCheck = Math.floor(Math.random() * 10) % 3;
   let empHrs = getWorkingHours(empCheck);
   totalEmpHrs += empHrs;
-  empWageArray.push(calculateDailyWage(empHrs));
+  empWageArray.push({
+    dayNum: totalWorkingDays,
+    dayHours: empHrs,
+    dailyWage: calculateDailyWage(empHrs),
+    toString() {
+      return (
+        '\nDay' +
+        this.dayNum +
+        ' => Working Hours is ' +
+        this.dailyHours +
+        ' And Wage Earned = ' +
+        this.dailyWage
+      );
+    },
+  });
   empDailyWageMap.set(totalWorkingDays, calculateDailyWage(empWage));
 }
 
